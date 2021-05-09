@@ -17,12 +17,15 @@ pipeline {
             }
             post {
                 failure {
+                    steps{
+                        env.FAILED = true 
+                    }
                     emailext attachLog: true,
                         attachmentsPattern: 'log_build.txt',
                         to:'adrianhebda22@gmail.com',
                         subject: "Failed Build stage in Pipeline: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}"     
-                    env.FAILED = true   
+                      
                 }
                 success {
                     mail to: 'adrianhebda22@gmail.com',
