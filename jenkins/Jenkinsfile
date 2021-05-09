@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                git branch: 'dev', url: 'https://github.com/Tituu/node-chat.git'
                 sh 'npm install'
             }
         }
@@ -16,8 +17,15 @@ pipeline {
             }
             post {
                 failure {
-                    mail to: 'team@example.com',
-                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                    mail to: 'adrianhebda22@gmail.com',
+                        subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                        body: "Something is wrong with ${env.BUILD_URL}"
+                    sh 'exit 1'
+                }
+                success {
+                    mail to: 'adrianhebda22@gmail.com',
+                        subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
+                        body: "Success building ${env.BUILD_URL} "
                 }
             }
         }
@@ -26,11 +34,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh 'git fetch --all'
+                sh 'git checkout master'
+                sh "git merge  ${env.BRANCH_NAME}"    
             }
             post {
                 failure {
-                    mail to: 'team@example.com',
+                    mail to: 'adrianhebda22@gmail.com',
                     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                 }
             }
