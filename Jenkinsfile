@@ -20,6 +20,7 @@ pipeline {
                     mail to: 'adrianhebda22@gmail.com',
                         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}",
+                        emailext attachLog: true,
                         attachmentsPattern: 'log.txt'
                     sh 'exit 1'
                 }
