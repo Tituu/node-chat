@@ -17,11 +17,10 @@ pipeline {
             }
             post {
                 failure {
-                    steps{
-                        expression {
-                            env.FAILED = true
-                        }  
-                    }
+                    script {
+                        env.FAILED = true
+                    }  
+
                     emailext attachLog: true,
                         attachmentsPattern: 'log_build.txt',
                         to:'adrianhebda22@gmail.com',
