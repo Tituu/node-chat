@@ -17,14 +17,14 @@ pipeline {
             }
             post {
                 failure {
-                    emailext attachLog: true,
+                    mail attachLog: true,
                         attachmentsPattern: 'log.txt',
                         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}",
-                        to:'adrianhebda22@gmail.com'
+                        to:'adrianhebda2@gmail.com'
                 }
                 success {
-                    mail to: 'adrianhebda22@gmail.com',
+                    mail to: 'adrianhebda2@gmail.com',
                         subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
                         body: "Success building ${env.BUILD_URL} "                        
                 }
