@@ -22,7 +22,6 @@ pipeline {
                         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}",
                         to:'adrianhebda22@gmail.com'
-                    sh 'exit 1'
                 }
                 success {
                     mail to: 'adrianhebda22@gmail.com',
