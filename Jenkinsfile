@@ -13,19 +13,21 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm run test'
+                sh 'npm run test > log.txt'
             }
             post {
                 failure {
                     mail to: 'adrianhebda22@gmail.com',
                         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                        body: "Something is wrong with ${env.BUILD_URL}"
+                        body: "Something is wrong with ${env.BUILD_URL}",
+                        attachmentsPattern: 'log.txt'
                     sh 'exit 1'
                 }
                 success {
                     mail to: 'adrianhebda22@gmail.com',
                         subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
-                        body: "Success building ${env.BUILD_URL} "
+                        body: "Success building ${env.BUILD_URL} ",
+                        
                 }
             }
         }
