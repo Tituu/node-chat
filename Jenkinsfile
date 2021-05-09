@@ -29,9 +29,6 @@ pipeline {
                 }
             }
         }
-    }
-            
-        }
         stage('Deploy') {
             steps {
                 sh 'git fetch --all'
