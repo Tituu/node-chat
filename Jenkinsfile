@@ -34,7 +34,7 @@ pipeline {
         stage('Test') {
             if( env.FAILED ) {
                 currentBuild.result = 'ABORTED'
-                error('Build failed! Stopping…')
+                error('Build failed. Stopping…')
             }
             steps {
                 sh 'npm run test > log.txt'
@@ -53,7 +53,7 @@ pipeline {
                         body: "Success testing ${env.BUILD_URL} "                        
                 }
             }
-        }
+        } 
         // stage('Deploy') {
         //     steps {
         //         sh 'git fetch --all'
