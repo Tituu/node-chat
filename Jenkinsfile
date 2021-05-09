@@ -13,12 +13,12 @@ pipeline {
             steps {
                 git branch: 'dev', url: 'https://github.com/Tituu/node-chat.git'
                 sh 'git pull'
-                sh 'npm install'
+                sh 'npm install > log_build.txt'
             }
             post {
                 failure {
                     emailext attachLog: true,
-                        attachmentsPattern: 'log.txt',
+                        attachmentsPattern: 'log_build.txt',
                         to:'adrianhebda22@gmail.com',
                         subject: "Failed Build stage in Pipeline: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}"     
