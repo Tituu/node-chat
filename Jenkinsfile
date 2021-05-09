@@ -32,11 +32,11 @@ pipeline {
             }
         }
         stage('Test') {
+            steps {
             if( env.FAILED ) {
                 currentBuild.result = 'ABORTED'
                 error('Build failed! Stopping…')
             }
-            steps {
                 sh 'npm run test > log.txt'
             }
             post {
