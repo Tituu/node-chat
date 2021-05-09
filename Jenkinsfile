@@ -18,7 +18,9 @@ pipeline {
             post {
                 failure {
                     steps{
-                        env.FAILED = true 
+                        expression {
+                            env.FAILED = true
+                        }  
                     }
                     emailext attachLog: true,
                         attachmentsPattern: 'log_build.txt',
