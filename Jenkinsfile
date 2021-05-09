@@ -18,10 +18,10 @@ pipeline {
             post {
                 failure {
                     emailext attachLog: true,
-                    attachmentsPattern: 'log.txt'
-                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                    body: "Something is wrong with ${env.BUILD_URL}",
-                    to:'adrianhebda22@gmail.com'
+                        attachmentsPattern: 'log.txt',
+                        subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                        body: "Something is wrong with ${env.BUILD_URL}",
+                        to:'adrianhebda22@gmail.com'
                     sh 'exit 1'
                 }
                 success {
