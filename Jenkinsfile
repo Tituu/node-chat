@@ -26,8 +26,7 @@ pipeline {
                 success {
                     mail to: 'adrianhebda22@gmail.com',
                         subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
-                        body: "Success building ${env.BUILD_URL} ",
-                        
+                        body: "Success building ${env.BUILD_URL} "                        
                 }
             }
         }
