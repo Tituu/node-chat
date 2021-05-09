@@ -29,18 +29,18 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'git fetch --all'
-                sh 'git checkout master'
-                sh "git merge  ${env.BRANCH_NAME}"    
-            }
-            post {
-                failure {
-                    mail to: 'adrianhebda22@gmail.com',
-                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         sh 'git fetch --all'
+        //         sh 'git checkout master'
+        //         sh "git merge  ${env.BRANCH_NAME}"    
+        //     }
+        //     post {
+        //         failure {
+        //             mail to: 'adrianhebda22@gmail.com',
+        //             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+        //         }
+        //     }
+        // }
     }
 }
