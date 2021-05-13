@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 pipeline {
     agent {
-        docker { image 'node:14-alpine' }
+        docker { image 'node:16' }
     }
 
     environment {
@@ -12,8 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 git branch: 'dev', url: 'https://github.com/Tituu/node-chat.git'
-                sh 'USER root'
-                sh 'apk add git'
+                sh 'apt install git'
                 sh 'git pull'
                 sh 'npm install > log_build.txt'
             }
