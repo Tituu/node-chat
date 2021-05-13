@@ -17,6 +17,6 @@ describe('isRealString', () => {
 	it ('should allow strings with non-space characters', () => {
 		const res = isRealString('  Binh   ');
 
-		expect(res).toBe(false);
+		expect(res).toBe(true);
 	});
 });
