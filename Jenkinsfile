@@ -12,8 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 git branch: 'dev', url: 'https://github.com/Tituu/node-chat.git'
-                sh 'git branch --set-upstream-to=origin/<branch> dev'
-                sh 'git pull'
+                git pull
                 sh 'npm install > log_build.txt'
             }
             post {
