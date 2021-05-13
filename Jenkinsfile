@@ -35,13 +35,15 @@ pipeline {
             }
         }
         stage('Test') {
-            when ( env.FAILED ) {
-                expression {
-                    currentBuild.result = 'ABORTED'
-                    error('Build failed! Stopping…')
-                }
-            }
             steps {
+                script{
+                    if(env.FAILED == true){
+                        expression {
+                            currentBuild.result = 'ABORTED'
+                            error('Build failed! Stopping…')
+                        }
+                    }
+                }
                 sh 'npm run test > log.txt'
             }
             post {
