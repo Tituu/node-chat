@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 git branch: 'dev', url: 'https://github.com/Tituu/node-chat.git'
-                sh 'apt-get install git'
+                sh 'apk add git'
                 sh 'git pull'
                 sh 'npm install > log_build.txt'
             }
