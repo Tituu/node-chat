@@ -68,5 +68,6 @@ pipeline {
                 sh 'docker cp /tmp/${DOCKER_BUILD}.tar deploy_container:/tmp/'
                 sh 'docker load -i /tmp/${DOCKER_BUILD}.tar'
             }
+        }
     }
 }
