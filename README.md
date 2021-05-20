@@ -13,6 +13,8 @@ Check out the chat application deployed on Heroku! https://desolate-fjord-74477.
 ###Technologies used in this project include:
 
   - Node/Express
+
+  
   - Socket.io
   - Geolocation API
   - ES6
