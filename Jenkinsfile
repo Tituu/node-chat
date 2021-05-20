@@ -61,18 +61,12 @@ pipeline {
                 }
             }
         } 
-        // stage('Deploy') {
-        //     steps {
-        //         sh 'git fetch --all'
-        //         sh 'git checkout master'
-        //         sh "git merge  ${env.BRANCH_NAME}"    
-        //     }
-        //     post {
-        //         failure {
-        //             mail to: 'adrianhebda22@gmail.com',
-        //             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-        //         }
-        //     }
-        // }
+        stage('Deploy'){
+            steps {
+                sh 'docker run -d -t --name deploy_container node:16 '
+                sh 'docker save -o /tmp/${DOCKER_BUILD}.tar ${DOCKER_BUILD}'
+                sh 'docker cp /tmp/${DOCKER_BUILD}.tar deploy_container:/tmp/'
+                sh 'docker load -i /tmp/${DOCKER_BUILD}.tar'
+            }
     }
 }
