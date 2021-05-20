@@ -14,7 +14,6 @@ Check out the chat application deployed on Heroku! https://desolate-fjord-74477.
 
   - Node/Express
 
-  
   - Socket.io
   - Geolocation API
   - ES6
