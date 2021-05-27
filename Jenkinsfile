@@ -64,10 +64,11 @@ pipeline {
         stage('Deploy'){
             agent any 
             steps {
-                sh 'docker run -d -t --name deploy_container node:16 '
-                sh 'docker save -o /tmp/${DOCKER_BUILD}.tar ${DOCKER_BUILD}'
-                sh 'docker cp /tmp/${DOCKER_BUILD}.tar deploy_container:/tmp/'
-                sh 'docker load -i /tmp/${DOCKER_BUILD}.tar'
+                sh '''
+                echo 'Deploying..'
+                docker build -t node-chat-deploy -f deploy.Dockerfile .
+                docker run node-chat-deploy
+                '''
             }
         }
     }
