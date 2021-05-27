@@ -61,22 +61,21 @@ pipeline {
             }
         } 
         stage('Deploy'){
-                agent {
-                    docker { image 'ubuntu:16' }
-                }
-                
-                 stages {
-                     stage('Ubuntu deploy'){
-                            steps {
-                                sh '''
-                                echo 'Deploying..'
-                                docker build -t node-chat-deploy -f deploy.Dockerfile .
-                                docker run node-chat-deploy
-                                '''
-                            }
-                        }
+            agent {
+                docker { image 'ubuntu:16' }
+            }
+
+            stages {
+                    stage('Ubuntu deploy') {
+                    steps {
+                        sh '''
+                        echo 'Deploying..'
+                        docker build -t node-chat-deploy -f deploy.Dockerfile .
+                        docker run node-chat-deploy
+                        '''
                     }
-                 }
+                }
+            }
 
         }
     }
