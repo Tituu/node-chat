@@ -64,13 +64,19 @@ pipeline {
                 agent {
                     docker { image 'ubuntu:16' }
                 }
-            steps {
-                sh '''
-                echo 'Deploying..'
-                docker build -t node-chat-deploy -f deploy.Dockerfile .
-                docker run node-chat-deploy
-                '''
-            }
+                 stages {
+                     stage('Ubuntu deploy'){
+                            steps {
+                                sh '''
+                                echo 'Deploying..'
+                                docker build -t node-chat-deploy -f deploy.Dockerfile .
+                                docker run node-chat-deploy
+                                '''
+                            }
+                        }
+                    }
+                 }
+
         }
     }
 }
