@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 pipeline {
     agent {
-        docker { image 'ubuntu-node:latest' }
+        docker { image 'rbecheras/ubuntu-node:latest' }
     }
     environment {
         FAILED = false
