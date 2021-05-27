@@ -61,6 +61,9 @@ pipeline {
             }
         } 
         stage('Deploy'){
+                agent {
+                    docker { image 'ubuntu:16' }
+                }
             steps {
                 sh '''
                 echo 'Deploying..'
