@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 git branch: 'dev', url: 'https://github.com/Tituu/node-chat.git'
-                sh 'apt install npm'
+                sh 'sudo apt install npm'
                 sh 'npm install > log_build.txt'
             }
             post {
