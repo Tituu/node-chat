@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 pipeline {
     agent {
-        docker { image 'node:16' }
+        docker { image 'ubuntu:latest' }
     }
     environment {
         FAILED = false
@@ -61,22 +61,13 @@ pipeline {
             }
         } 
         stage('Deploy'){
-            agent {
-                docker { image 'ubuntu:16' }
+            steps {
+                sh '''
+                echo 'Deploying..'
+                docker build -t node-chat-deploy -f deploy.Dockerfile .
+                docker run node-chat-deploy
+                '''
             }
-
-            stages {
-                    stage('Ubuntu deploy') {
-                    steps {
-                        sh '''
-                        echo 'Deploying..'
-                        docker build -t node-chat-deploy -f deploy.Dockerfile .
-                        docker run node-chat-deploy
-                        '''
-                    }
-                }
-            }
-
         }
     }
 }
