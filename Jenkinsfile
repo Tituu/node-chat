@@ -64,6 +64,7 @@ pipeline {
                 agent {
                     docker { image 'ubuntu:16' }
                 }
+                
                  stages {
                      stage('Ubuntu deploy'){
                             steps {
